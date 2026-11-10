@@ -1,0 +1,40 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kuya-j",
+  "main": "cloudflare/worker.mjs",
+  "compatibility_date": "2026-09-21",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+    "html_handling": "none"
+  },
+  "services": [
+    { "binding": "WORKER_SELF_REFERENCE", "service": "kuya-j" }
+  ],
+  "ratelimits": [
+    { "name": "CHAT_RATE_LIMITER", "namespace_id": "1001", "simple": { "limit": 35, "period": 60 } }
+  ],
+  // Customize APP_ORIGIN for your public hostname before deployment.
+  // Account/zone identifiers and credentials belong in your local config/environment.
+  "vars": {
+    "APP_ORIGIN": "",
+    "LLM_PROVIDER": "nyolab",
+    "LLM_FALLBACK_PROVIDER": "zai",
+    "ZAI_BASE_URL": "https://api.z.ai/api/paas/v4",
+    "ZAI_MODEL": "glm-5.3-flash",
+    "NYOLAB_BASE_URL": "https://llm.nyolab.ai/api/public/v1",
+    "NYOLAB_MODEL": "glm-5.3-flash",
+    // Legacy vars/key stay available for the pre-provider Git/Worker rollback.
+    "LLM_BASE_URL": "https://api.z.ai/api/paas/v4",
+    "LLM_MODEL": "glm-5.3-flash",
+    "LLM_REASONING_EFFORT": "low",
+    "LLM_STREAMING": "auto",
+    "MEILI_URL": "https://search2.bettergov.ph",
+    "TYPESAFE_MODEL": "jev-latest"
+  },
+  "limits": { "cpu_ms": 30000 },
+  "observability": { "enabled": true }
+}

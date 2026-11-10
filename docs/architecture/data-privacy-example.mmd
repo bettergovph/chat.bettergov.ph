@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor Resident
+    participant UI as Kuya J browser
+    participant App as Chat coordinator
+    participant Jev as TypeSafe Jev
+    participant GLM as Answer model
+    participant Juris as Existing Juris service
+
+    Resident->>UI: Ask about the Data Privacy Act
+    UI->>App: Conversation and language preference
+    App->>Jev: Input screening and source questions
+    Jev-->>App: Choices and relevance probabilities
+    App->>GLM: Question and permitted source tools
+    GLM-->>App: Request a Juris lookup
+    App->>Juris: Validated read-only MCP call
+    Juris-->>App: Record, available text and provenance
+    App->>Jev: Screen returned context
+    Jev-->>App: Keep, drop or flag conflict
+    Note over App,Juris: A further exact-record lookup may repeat this loop
+    App->>GLM: Accepted context and registered references
+    GLM-->>App: Incremental answer text
+    App-->>UI: Answer snapshots and source references
+    UI-->>Resident: Plain-language explanation

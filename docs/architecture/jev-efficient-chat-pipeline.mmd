@@ -1,0 +1,52 @@
+flowchart TB
+  subgraph sourceSystems["Existing knowledge projects - built and maintained independently"]
+    publicData["Documents and public datasets"]
+    sourceRetrieval["Source-owned RAG, semantic search, indexes, tables and exact records"]
+    sourceInterfaces["Published APIs and MCP tools"]
+    integrationGuides["Documentation and llms.txt"]
+    publicData --> sourceRetrieval --> sourceInterfaces
+  end
+
+  subgraph chatPipeline["Kuya J - conversation and coordination"]
+    resident["Resident asks in the browser or PWA"]
+    requestChecks["Code validates request and capacity"]
+    inputJev["Jev: input screening, source relevance and lookup type"]
+    inputDecision{"Code applies screening thresholds"}
+    inputRedirect["Friendly redirect - no answer-model or source call"]
+    toolCatalog["Code selects source families and permitted tools"]
+    answerPlanner["AI chooses a permitted tool and arguments"]
+    executeLookup["Code validates and executes a bounded, read-only lookup"]
+    compactResult["Code bounds and abbreviates returned evidence"]
+    contextJev["Jev: relevance, injection and contradiction judgments"]
+    contextDecision{"Code applies context policy"}
+    acceptedContext["Accepted context and public-page citation registry"]
+    droppedResult["Drop source text; send a short tool error"]
+    consolidate["AI consolidates accepted information across sources"]
+    friendlyFallback["No accepted results at completion: friendly fallback"]
+    streamedOutput["Stream answer, source references and optional Debug"]
+  end
+
+  resident --> requestChecks --> inputJev --> inputDecision
+  inputDecision -->|"Block"| inputRedirect --> streamedOutput
+  inputDecision -->|"Allow"| toolCatalog
+  integrationGuides -. "Integration-time guidance" .-> toolCatalog
+  toolCatalog --> answerPlanner --> executeLookup
+  executeLookup -->|"Lookup"| sourceInterfaces
+  sourceInterfaces -->|"Records, passages and metadata"| compactResult
+  compactResult --> contextJev --> contextDecision
+  contextDecision -->|"Keep or keep with conflict flag"| acceptedContext
+  contextDecision -->|"Drop"| droppedResult
+  droppedResult -->|"Another lookup may help; limits apply"| answerPlanner
+  acceptedContext -->|"More information needed; limits apply"| answerPlanner
+  acceptedContext --> consolidate --> streamedOutput
+  answerPlanner -->|"Lookup required; zero accepted results at completion"| friendlyFallback
+  friendlyFallback --> streamedOutput --> resident
+
+  classDef jev fill:#e6f8f1,stroke:#009574,color:#075d4b,stroke-width:2px
+  classDef ai fill:#edf4ff,stroke:#075ad0,color:#092d56
+  classDef source fill:#092d56,stroke:#35618b,color:#ffffff
+  classDef fallback fill:#fff5de,stroke:#d3ab57,color:#83520b
+  class inputJev,contextJev jev
+  class answerPlanner,consolidate ai
+  class publicData,sourceRetrieval,sourceInterfaces source
+  class inputRedirect,friendlyFallback fallback

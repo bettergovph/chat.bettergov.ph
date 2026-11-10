@@ -1,0 +1,28 @@
+{
+  "measurements": {
+    "measuredAt": "2026-09-22T09:29:33.518Z",
+    "baseline": "All configured tools; counterfactual full catalog, not a separately billed request",
+    "example": "Find the PSA dataset Palay and Corn: Volume of Production and share its dataset page",
+    "selectedSourceIds": [
+      "statistics",
+      "services"
+    ],
+    "allTools": 52,
+    "selectedTools": 7,
+    "allCharacters": 32950,
+    "selectedCharacters": 4193,
+    "allBytes": 33000,
+    "selectedBytes": 4193,
+    "inputJudgments": 17
+  },
+  "reductionPercent": 87,
+  "height": 3058,
+  "width": 1600,
+  "fontLoaded": true,
+  "imagesLoaded": true,
+  "sourceDomains": 9,
+  "modelNameExposed": false,
+  "clipped": [],
+  "connections": 12,
+  "rasterScale": 2
+}

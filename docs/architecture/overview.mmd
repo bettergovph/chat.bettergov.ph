@@ -1,0 +1,34 @@
+flowchart TB
+    subgraph SOURCE[Existing knowledge projects — built and maintained independently]
+        DOC[Documents and public datasets]
+        SEARCH[Source-owned retrieval: semantic search, indexes, tables and exact records]
+        INTERFACE[Published APIs and MCP tools]
+        GUIDE[Documentation and llms.txt]
+        DOC --> SEARCH --> INTERFACE
+        GUIDE -. integration guidance .-> CATALOG
+    end
+
+    subgraph CHAT[Kuya J — conversation and coordination]
+        UI[Resident asks in the browser or PWA]
+        CHECK[Validate request and capacity]
+        ROUTER[Jev: screen input and recommend source families]
+        CATALOG[Configured tool catalog and adapters]
+        MODEL[GLM: choose a permitted tool and arguments]
+        EXEC[Code: validate and execute read-only lookup]
+        FILTER[Jev: relevance, injection and contradiction checks]
+        CONTEXT[Accepted context and citation registry]
+        WRITE[GLM: explain the returned information]
+        OUTPUT[Stream answer, references and optional Debug events]
+        RETRY[Friendly reply when no usable results remain]
+    end
+
+    UI --> CHECK --> ROUTER
+    ROUTER -->|Source selection rules| CATALOG
+    CATALOG --> MODEL --> EXEC
+    EXEC -->|Lookup| INTERFACE
+    INTERFACE -->|Records, passages and metadata| FILTER
+    FILTER -->|Keep or label conflict| CONTEXT
+    CONTEXT -->|More information needed| MODEL
+    CONTEXT --> WRITE --> OUTPUT --> UI
+    FILTER -->|Drop result; another lookup may help| MODEL
+    MODEL -->|Lookup required; zero accepted results at completion| RETRY --> OUTPUT

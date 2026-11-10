@@ -1,0 +1,48 @@
+flowchart LR
+  subgraph chatPipeline["Kuya J · chat pipeline"]
+    question["Browser / PWA: ask + validate"]
+    inputJev["JEV INPUT: 17 judgments in 1 request
+Conversation aware: latest question + history
+Batched screening: spam, prompt injection, jailbreak, programming, recipes
+Source routing: primary source + 10 relevance judgments
+Lookup intent: search, exact record, statistics, comparison, catalog, no lookup"]
+    toolCatalog["Code: select source tools using Jev judgments
+Up to 4 source families; uncertain routes expose all 10"]
+    planner["AI: choose tool + arguments
+Selected tools + lookup intent"]
+    executor["Code: read-only lookup"]
+    contextJev["JEV CONTEXT: batched result screening
+Relevance + injection: source text and metadata
+Metadata screening: citation titles + URLs
+Preserve discovery data: useful IDs, schemas, dimension codes"]
+    acceptedContext["Accepted context + citations"]
+    consolidate["AI: consolidate sources"]
+    output["Stream answer, sources + Debug
+Judgments, routes, filter decisions, timing, Jev token usage"]
+    friendlyReply["Friendly reply: no answer-model call"]
+  end
+  subgraph sourceSystems["Independent knowledge projects"]
+    documents["Documents + datasets"]
+    retrieval["Source-owned RAG, indexes, tables"]
+    interfaces["Published APIs + MCP"]
+    guides["Docs + llms.txt: integration guidance"]
+    documents --> retrieval --> interfaces
+  end
+  question --> inputJev --> toolCatalog --> planner --> executor
+  executor -->|"Lookup"| interfaces
+  interfaces -->|"Results"| contextJev
+  contextJev -->|"Keep"| acceptedContext
+  acceptedContext --> consolidate --> output --> question
+  inputJev -. "Blocked" .-> friendlyReply
+  friendlyReply -.-> output
+  guides -. "Integration guidance" .-> toolCatalog
+  contextJev -. "Dropped result: bounded retry" .-> planner
+  acceptedContext -. "More needed: bounded retry" .-> planner
+  classDef jev fill:#e3f7ee,stroke:#009873,color:#007758,stroke-width:2px
+  classDef ai fill:#edf4ff,stroke:#548ae0,color:#0956bd
+  classDef fallback fill:#fff8e9,stroke:#c7a66a,color:#755119
+  class inputJev,contextJev jev
+  class planner,consolidate,output ai
+  class friendlyReply fallback
+  style chatPipeline fill:#fbfdff,stroke:#98afc8,stroke-dasharray:5 7
+  style sourceSystems fill:#f0f6ff,stroke:#6490c2,stroke-dasharray:5 7

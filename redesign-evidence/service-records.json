@@ -1,0 +1,238 @@
+{
+  "source_input": {
+    "kind": "mixed",
+    "location": "Repository root; supplied design reference screenshots",
+    "observed_at": "2026-09-21T17:55:40.865115+00:00",
+    "notes": "Reference screenshots supply visual inspiration only: pale blue surfaces, centered mascot identity, rounded topic cards and bottom composer. Existing chatbot features supply functional scope. Knowledge-base-first links follow the user\u2019s explicit preference."
+  },
+  "services": [
+    {
+      "id": "government-services",
+      "title": "Find government services",
+      "purpose": "Find service and agency records with links to verify details.",
+      "category": "services",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://bettergov.ph"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    },
+    {
+      "id": "laws-rights",
+      "title": "Understand laws and rights",
+      "purpose": "Research Republic Acts and court decisions.",
+      "category": "juris",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://juris.ph/api"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    },
+    {
+      "id": "national-budget",
+      "title": "Understand the national budget",
+      "purpose": "Inspect appropriations and budget proposals.",
+      "category": "budget",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://budget.bettergov.ph/docs"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    },
+    {
+      "id": "bills-congress",
+      "title": "Explore bills in Congress",
+      "purpose": "Look up proposed laws and legislative authors.",
+      "category": "bills",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://bills.juris.ph/api"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    },
+    {
+      "id": "public-projects",
+      "title": "Inspect public projects",
+      "purpose": "Look up infrastructure and geocoded flood control projects.",
+      "category": "flood",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://flood-control.bettergov.ph"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    },
+    {
+      "id": "facts-statistics",
+      "title": "Explore Philippine statistics",
+      "purpose": "Research PSA datasets and their release coverage.",
+      "category": "statistics",
+      "responsible_agency": null,
+      "official_url": null,
+      "actions": [
+        {
+          "label": "Ask Kuya J",
+          "url": null
+        },
+        {
+          "label": "Open knowledge base",
+          "url": "https://statistics.bettergov.ph/api"
+        }
+      ],
+      "eligibility": [],
+      "requirements": [],
+      "fees": [],
+      "processing_time": [],
+      "channels": [
+        "AI research chat"
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "location": "lib/server/tools.ts",
+          "observed_at": "2026-09-21T17:55:40.865115+00:00",
+          "notes": "Existing read-only retrieval adapters. No transactional or agency service requirements are asserted by the topic card."
+        }
+      ],
+      "confidence": "partial",
+      "unknowns": [
+        "Source coverage and freshness depend on each live lookup.",
+        "This community assistant does not establish eligibility, fees or official transaction availability."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "fontLoaded": true,
+  "logoImageLoaded": true,
+  "height": 2270,
+  "sourceCards": 10,
+  "domains": [
+    "juris.ph",
+    "bills.juris.ph",
+    "budget.bettergov.ph",
+    "bettergov.ph",
+    "officials.bettergov.ph",
+    "statistics.bettergov.ph",
+    "statistics.bettergov.ph",
+    "flood-control.bettergov.ph",
+    "api.dpwh.bettergov.ph",
+    "asean.bettergov.ph"
+  ],
+  "modelNameExposed": false,
+  "overflow": [],
+  "fontFamilies": [
+    "\"Inter Tight\", sans-serif"
+  ],
+  "rasterScale": 2
+}
